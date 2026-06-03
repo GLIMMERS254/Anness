@@ -1,0 +1,35 @@
+# OS files
+.DS_Store
+Thumbs.db
+.windows-build-tools
+
+# Node/npm (in case you add these later)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment files
+.env
+.env.local
+
+# Build/dist folders (if you add a build process later)
+dist/
+build/
+
+# Cache
+.cache/
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+*.tmp
+*.bak

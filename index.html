@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ray & Anne - Our Story</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-orange: #FF8C42;
+            --dark-orange: #E65100;
+            --light-orange: #FFB088;
+            --cream: #FFF8F3;
+            --warm-brown: #6B4423;
+            --soft-white: #FFFAF7;
+            --accent-gold: #D4AF37;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background: linear-gradient(135deg, var(--cream) 0%, #FFE8D6 100%);
+            color: var(--warm-brown);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 140, 66, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 20px rgba(255, 140, 66, 0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent-gold);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--light-orange) 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -50px;
+            left: -50px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: white;
+            color: var(--primary-orange);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            background: var(--accent-gold);
+            color: white;
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            color: var(--primary-orange);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-orange), transparent);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: var(--warm-brown);
+        }
+
+        .about-text h3 {
+            color: var(--primary-orange);
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(255, 140, 66, 0.3);
+            border: 5px solid var(--light-orange);
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-orange);
+            font-size: 1rem;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Photo Upload Section */
+        .photo-section {
+            background: linear-gradient(135deg, rgba(255, 140, 66, 0.1) 0%, rgba(255, 176, 136, 0.1) 100%);
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .upload-area {
+            border: 3px dashed var(--primary-orange);
+            border-radius: 10px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .upload-area:hover {
+            background: var(--cream);
+            transform: scale(1.02);
+        }
+
+        .upload-area input[type="file"] {
+            display: none;
+        }
+
+        .upload-label {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--primary-orange);
+            cursor: pointer;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-label:hover {
+            color: var(--dark-orange);
+        }
+
+        /* Messages Section */
+        .messages {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(255, 140, 66, 0.15);
+            margin-bottom: 3rem;
+        }
+
+        .message-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--primary-orange);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group textarea,
+        .form-group input,
+        .form-group select {
+            padding: 1rem;
+            border: 2px solid var(--light-orange);
+            border-radius: 8px;
+            font-family: 'Lora', serif;
+            font-size: 1rem;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+
+        .form-group textarea:focus,
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 0 3px rgba(255, 140, 66, 0.1);
+            transform: scale(1.01);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--dark-orange) 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 140, 66, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(255, 140, 66, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Renewal Message */
+        .renewal {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--light-orange) 100%);
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .renewal h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .renewal p {
+            font-size: 1.2rem;
+            line-height: 2;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+            font-style: italic;
+        }
+
+        .renewal-message {
+            background: rgba(255,255,255,0.15);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        /* Memories Timeline */
+        .timeline {
+            padding: 6rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            padding-left: 3rem;
+            position: relative;
+            animation: fadeInLeft 0.6s ease-out backwards;
+        }
+
+        .timeline-item:nth-child(odd) {
+            animation-delay: 0.1s;
+        }
+
+        .timeline-item:nth-child(even) {
+            animation-delay: 0.2s;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--primary-orange);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--primary-orange);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 25px;
+            width: 2px;
+            height: 60px;
+            background: linear-gradient(180deg, var(--primary-orange), transparent);
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(255, 140, 66, 0.15);
+        }
+
+        .timeline-content h4 {
+            color: var(--primary-orange);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content p {
+            color: var(--warm-brown);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--warm-brown);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(20px);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: slideInUp 0.5s ease-out;
+            z-index: 2000;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                height: 300px;
+            }
+
+            .renewal {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#memories">Our Story</a></li>
+            <li><a href="#message">Your Message</a></li>
+            <li><a href="#renewal">Our Future</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Ray & Anne</h1>
+            <p>Our Love, Our Story, Our Forever</p>
+            <button class="cta-button" onclick="document.getElementById('about').scrollIntoView()">Our Journey</button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2 class="section-title">About Us</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Who We Are</h3>
+                <p>
+                    We're two souls who found each other in this beautiful journey of life. Ray, a dedicated student and passionate developer, met Anne—his beacon of light and inspiration. Together, we've built something real, something worth fighting for.
+                </p>
+                <h3>What Matters</h3>
+                <p>
+                    This website is a celebration of us—our memories, our dreams, and the unbreakable bond we share. Through joy and challenges, we've learned that real love means vulnerability, forgiveness, and choosing each other every single day.
+                </p>
+            </div>
+            <div class="about-image" id="photoDisplay">
+                <span>📸 Your favorite photo will appear here</span>
+            </div>
+        </div>
+
+        <!-- Photo Upload -->
+        <div class="photo-section">
+            <h3 style="color: var(--primary-orange); margin-bottom: 1rem;">Add Your Favorite Photo</h3>
+            <div class="upload-area" onclick="document.getElementById('photoInput').click()">
+                <label for="photoInput" class="upload-label">Click to Upload Your Photo</label>
+                <input type="file" id="photoInput" accept="image/*" onchange="handlePhotoUpload(event)">
+                <p style="color: var(--warm-brown);">or drag and drop</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Memories Timeline -->
+    <section class="timeline" id="memories">
+        <h2 class="section-title">Our Story</h2>
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <h4>💑 How It Began</h4>
+                <p>The moment I met you, Anne, I knew my life was about to change. You brought light, laughter, and a kind of love I never knew existed. You're not just my girlfriend—you're my best friend, my inspiration, and my greatest blessing.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <h4>🌟 The Good Times</h4>
+                <p>From late-night conversations to spontaneous adventures, every moment with you has been precious. You've supported my dreams, believed in me when I doubted myself, and made every day feel like a gift. Together, we've created memories that will last forever.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <h4>💪 Through the Storms</h4>
+                <p>Relationships aren't perfect, and neither are we. We've had our struggles, our moments of doubt, and our challenges. But what matters is that we faced them together, learned from them, and came out stronger. Every storm has only deepened my love for you.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <h4>🔄 The Journey of Growth</h4>
+                <p>I've learned that love isn't just about the butterflies—it's about commitment, patience, and choosing to love even when it's hard. You've taught me the true meaning of partnership, and I'm forever grateful for that gift. You make me want to be a better man.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Message Section -->
+    <section class="messages" id="message">
+        <h2 class="section-title">Your Space to Speak</h2>
+        <p style="text-align: center; color: var(--warm-brown); margin-bottom: 2rem; font-size: 1.1rem;">
+            Anne, this space is for you. Share your fears, your hopes, your dreams, anything you want me to know. I'm listening with an open heart.
+        </p>
+        <form class="message-form" onsubmit="handleMessageSubmit(event)">
+            <div class="form-group">
+                <label for="messageType">What Would You Like to Share?</label>
+                <select id="messageType" onchange="updatePlaceholder()">
+                    <option value="fears">My Fears & Worries</option>
+                    <option value="dreams">My Dreams & Hopes</option>
+                    <option value="feelings">How I Feel About Us</option>
+                    <option value="anything">Anything Else</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" placeholder="Share what's in your heart..." required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Your Message</button>
+        </form>
+        <div id="messages-display" style="margin-top: 2rem; max-height: 300px; overflow-y: auto;"></div>
+    </section>
+
+    <!-- Renewal Section -->
+    <section class="renewal" id="renewal">
+        <h2>We Are Back to January ✨</h2>
+        <p>To My Beautiful Anne,</p>
+        <div class="renewal-message">
+            <p>I want you to know that I forgive you for everything. All the mistakes, all the hurt—it's behind us now. When I look at you, I don't see the things you did wrong. I see the woman I love, the woman who's worth fighting for, the woman who makes my heart skip a beat.</p>
+            <p style="margin-top: 1.5rem;">We are back to how we used to be in January—pure, genuine, and deeply connected. We've been given a second chance, a fresh start, and I promise you this: I will cherish you like it's the first day all over again. Our bond is stronger now, forged through challenges, and unbreakable.</p>
+            <p style="margin-top: 1.5rem;">Together, we have everything—trust, love, passion, and a friendship that can weather any storm. I see a beautiful future with you, Anne. One filled with laughter, intimacy, growth, and a love that only gets deeper with time.</p>
+            <p style="margin-top: 1.5rem; font-weight: 700; font-size: 1.3rem;">You are my forever. Let's build our dream together. 💕</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>With all my love,</p>
+        <p style="font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700;">Ray ❤️ Anne</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">Made with love and endless devotion</p>
+    </footer>
+
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+        <strong>💕 Message Saved!</strong> Anne, your words have been saved. Ray will treasure them forever.
+    </div>
+
+    <script>
+        // Photo Upload Handler
+        function handlePhotoUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    const photoDisplay = document.getElementById('photoDisplay');
+                    photoDisplay.innerHTML = '';
+                    photoDisplay.appendChild(img);
+                    
+                    // Save to localStorage
+                    localStorage.setItem('annePhoto', e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Load photo from localStorage on page load
+        window.addEventListener('load', function() {
+            const savedPhoto = localStorage.getItem('annePhoto');
+            if (savedPhoto) {
+                const img = document.createElement('img');
+                img.src = savedPhoto;
+                const photoDisplay = document.getElementById('photoDisplay');
+                photoDisplay.innerHTML = '';
+                photoDisplay.appendChild(img);
+            }
+            loadMessages();
+        });
+
+        // Update placeholder based on message type
+        function updatePlaceholder() {
+            const textarea = document.getElementById('message');
+            const type = document.getElementById('messageType').value;
+            
+            const placeholders = {
+                fears: 'Share your fears, worries, or concerns. I\'m here to listen and understand...',
+                dreams: 'Tell me your dreams and hopes for our future together...',
+                feelings: 'How do you feel about us right now? What do you love about our relationship?',
+                anything: 'Tell me anything that\'s on your heart. I\'m listening...'
+            };
+            
+            textarea.placeholder = placeholders[type];
+        }
+
+        // Message Handler
+        function handleMessageSubmit(event) {
+            event.preventDefault();
+            
+            const messageType = document.getElementById('messageType').value;
+            const messageText = document.getElementById('message').value;
+            
+            if (messageText.trim()) {
+                // Save to localStorage
+                let messages = JSON.parse(localStorage.getItem('anneMessages') || '[]');
+                messages.push({
+                    type: messageType,
+                    text: messageText,
+                    timestamp: new Date().toLocaleString()
+                });
+                localStorage.setItem('anneMessages', JSON.stringify(messages));
+                
+                // Reset form
+                document.getElementById('message').value = '';
+                document.getElementById('messageType').value = 'fears';
+                updatePlaceholder();
+                
+                // Show success message
+                const successMsg = document.getElementById('successMessage');
+                successMsg.classList.add('show');
+                setTimeout(() => {
+                    successMsg.classList.remove('show');
+                }, 5000);
+                
+                // Reload messages display
+                loadMessages();
+            }
+        }
+
+        // Load and display messages
+        function loadMessages() {
+            const messages = JSON.parse(localStorage.getItem('anneMessages') || '[]');
+            const display = document.getElementById('messages-display');
+            
+            if (messages.length > 0) {
+                display.innerHTML = '<h3 style="color: var(--primary-orange); margin-bottom: 1rem;">📝 Your Messages to Ray</h3>';
+                messages.forEach((msg, index) => {
+                    const msgElement = document.createElement('div');
+                    msgElement.style.cssText = 'background: var(--cream); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid var(--primary-orange);';
+                    msgElement.innerHTML = `
+                        <p style="color: var(--primary-orange); font-weight: 700; margin-bottom: 0.5rem;">📌 ${msg.type.charAt(0).toUpperCase() + msg.type.slice(1)}</p>
+                        <p style="color: var(--warm-brown); margin-bottom: 0.5rem;">${msg.text}</p>
+                        <p style="color: var(--primary-orange); font-size: 0.85rem;">${msg.timestamp}</p>
+                    `;
+                    display.appendChild(msgElement);
+                });
+            }
+        }
+
+        // Smooth scroll polish
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Add scroll animation trigger
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.timeline-item, .about-content').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

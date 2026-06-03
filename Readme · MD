@@ -1,0 +1,173 @@
+# Ray & Anne - Our Love Story Website 💕
+
+A beautiful, interactive website created with love. This is a special space for Ray and Anne to celebrate their love, share memories, and strengthen their bond.
+
+## 🧡 Features
+
+✨ **Beautiful Orange Theme** - Warm, romantic, and elegant design
+📸 **Photo Upload** - Anne can add her favorite photo
+💬 **Message Section** - Share fears, dreams, hopes, and feelings
+📖 **Our Story Timeline** - A visual journey through your relationship
+❤️ **Renewal Message** - A heartfelt message about starting fresh
+
+## 🚀 Live Website
+
+Visit the live website: [https://glimmers254.github.io/Anne](https://glimmers254.github.io/Anne)
+
+## 📁 Files Included
+
+- `index.html` - Main website file (contains all HTML, CSS, and JavaScript)
+- `README.md` - This file
+- `.gitignore` - Git ignore file
+
+## 💻 How to Use Locally
+
+1. Download all files
+2. Open `index.html` in your web browser
+3. That's it! The website works offline
+
+## 🌐 How to Deploy to GitHub Pages
+
+### Step 1: Create a GitHub Repository
+1. Go to [GitHub.com](https://github.com) and sign in (or create an account)
+2. Click the **"+"** icon in the top right → **New repository**
+3. Name it: `Anne` (or any name you prefer)
+4. Make it **Public** (so it can be hosted)
+5. Click **Create repository**
+
+### Step 2: Upload Files Using GitHub Web Interface (Easiest)
+1. In your new repo, click **Add file** → **Upload files**
+2. Select and upload:
+   - `index.html`
+   - `README.md`
+   - `.gitignore`
+3. At the bottom, type a commit message: `Initial commit - Anne's website`
+4. Click **Commit changes**
+
+### Step 3: Enable GitHub Pages
+1. Go to your repo's **Settings** (top menu)
+2. Scroll down to **Pages** (on the left sidebar)
+3. Under "Build and deployment":
+   - Select **Deploy from a branch**
+   - Select branch: **main**
+   - Select folder: **/ (root)**
+4. Click **Save**
+5. Wait 1-2 minutes for GitHub to build your site
+
+### Step 4: Access Your Website
+Your website will be live at:
+```
+https://yourusername.github.io/Anne
+```
+
+For example: `https://GLIMMERS254.github.io/Anne`
+
+---
+
+## 💡 Features Explanation
+
+### Photo Upload
+Anne can click "Add Your Favorite Photo" to upload her favorite picture. The photo is saved in her browser (localStorage).
+
+### Message Feature
+Anne can write messages about:
+- **My Fears & Worries** - Share concerns
+- **My Dreams & Hopes** - Share aspirations
+- **How I Feel About Us** - Share relationship feelings
+- **Anything Else** - Share anything on her heart
+
+All messages are saved in her browser automatically.
+
+### Our Story Timeline
+A visual timeline showing:
+1. How It Began - Your first meeting
+2. The Good Times - Happy memories
+3. Through the Storms - Challenges overcome
+4. The Journey of Growth - How you've grown together
+
+### The Renewal Message
+Ray's heartfelt message about:
+- Forgiveness for past mistakes
+- Starting fresh like January
+- Your strong bond and future together
+- Intimacy and commitment
+
+---
+
+## 🔧 Customization Guide
+
+Want to personalize the website? Edit `index.html`:
+
+### Change Names
+Find and replace:
+```html
+<h1>Ray & Anne</h1>
+```
+
+### Change Messages
+Edit the timeline section (search for "How It Began"):
+```html
+<p>The moment I met you, Anne...</p>
+```
+
+### Change Colors
+Edit the `:root` CSS variables at the top:
+```css
+--primary-orange: #FF8C42;      /* Main orange */
+--dark-orange: #E65100;         /* Darker orange */
+--light-orange: #FFB088;        /* Lighter orange */
+```
+
+### Add More Timeline Items
+Copy and paste this template:
+```html
+<div class="timeline-item">
+    <div class="timeline-content">
+        <h4>📅 Your Title</h4>
+        <p>Your story here...</p>
+    </div>
+</div>
+```
+
+---
+
+## 📱 Mobile Friendly
+
+The website is fully responsive and works great on:
+- ✅ Desktop computers
+- ✅ Tablets
+- ✅ Mobile phones
+
+---
+
+## ✋ Important Notes
+
+- **Browser Storage**: Photos and messages are saved in Anne's browser locally. They won't appear on other devices.
+- **No Server Required**: This website is completely static and doesn't need a server
+- **Private**: Only people with the link can access it
+
+---
+
+## 💕 Made with Love
+
+This website was created with all of Ray's love for Anne. Every design choice, every word, every feature has been thoughtfully crafted to celebrate their beautiful relationship.
+
+**You are my forever, Anne. Let's build our dream together. 💕**
+
+---
+
+## 📝 License
+
+This website is personal and created with love. Feel free to share with friends and family.
+
+---
+
+## 🤝 Support
+
+For questions or help with deployment, reach out to Ray!
+
+---
+
+**Last Updated**: June 2026  
+**Created by**: Ray 💕  
+**For**: Anne with all my love
